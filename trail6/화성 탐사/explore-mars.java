@@ -42,8 +42,7 @@ public class Main {
         int X = find(x);
         int Y = find(y);
         
-        uf[X] = 1;
-        uf[Y] = 1;
+        uf[X] = Y;
     }
     
     public static int find(int x) {
@@ -125,21 +124,16 @@ public class Main {
         
         int mstCost = 0;
         int mstCount = 0;
-        int m = map.size();
         
-        while (m-- > 1) {
+        for (Edge edge : graph) {
+            int a = edge.a;
+            int b = edge.b;
+            int dist = edge.dist;
             
-            for (Edge edge : graph) {
-                int a = edge.a;
-                int b = edge.b;
-                int dist = edge.dist;
-                
-                if ((find(a) == 1 && find(b) != 1) || (find(a) != 1 && find(b) == 1)) {
-                    union(a, b);
-                    mstCost += dist;
-                    mstCount++;
-                    break;
-                }
+            if (find(a) != find(b)) {
+                union(a, b);
+                mstCost += dist;
+                mstCount++;
             }
         }
         
