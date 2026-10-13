@@ -38,7 +38,12 @@ public class Main {
         Queue<Integer> q = new ArrayDeque<Integer>();
         int[] dp = new int[n + 1];
         
-        q.add(1);
+        for (int i = 1; i <= n; i++) {
+            if (indegree[i] == 0) {
+                q.add(i);
+            }
+        }
+        
         dp[1] = 1;
         
         while (!q.isEmpty()) {
