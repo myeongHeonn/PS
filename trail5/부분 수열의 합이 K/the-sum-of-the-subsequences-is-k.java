@@ -17,9 +17,8 @@ public class Main {
         int count = 0;
 
         for (int i = 1; i <= n; i++) {
-            for (int j = 0; j <= n - i; j++) {
-                int value = prefixSum[j + i] - prefixSum[j];
-
+            for (int j = i; j <= n; j++) {
+                int value = prefixSum[j] - prefixSum[i - 1];
                 if (value == k) count++;
             }
         }
